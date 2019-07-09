@@ -16,3 +16,5 @@ print(f'로또 당첨번호는 {sorted(lotto)} 입니다')
 #필요하면 이렇게도 해보자
 name = '홍길동'
 print('안녕하세요, '+ name + '입니다.')
+
+#test for github (home)
