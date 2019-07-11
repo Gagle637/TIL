@@ -35,16 +35,16 @@ def lotto_result():
     if meched == 6:
         result = '1등입니다.'
     elif meched == 5:
-        if lotto['bunuNo'] in numbers:
-            '2등입니다.'
+        if lotto['bnusNo'] in numbers:
+           result = '2등입니다.'
         else:
-            '3등입니다.'
+            result ='3등입니다.'
     elif meched == 4:
-        '4등입니다.'
+        result = '4등입니다.'
     elif meched == 3:
-        '5등입니다.'
+        result = '5등입니다.'
     else:
-        '꽝입니다.'
+        result = '꽝입니다.'
     return render_template('lotto_result.html', winner=winner, numbers=numbers, result=result)
 
 
