@@ -55,7 +55,7 @@ def lotto_result():
     return render_template('lotto_result.html', winner=winner, numbers=numbers, result=result)
 
 
-
+    
 
 
         
