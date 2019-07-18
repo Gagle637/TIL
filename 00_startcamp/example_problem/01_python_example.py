@@ -21,11 +21,21 @@
 
 # 성공 ps. 아웃풋만 나올것
 
-N= int(input())
-for i in range(1,N+1):
-	if i/3:
-		print(i, end=' ')
-	elif i%3=0 and i%11==0:
-		print('--', end=' ')
-	else:
-		print('-', end=' ')
+# N= int(input())
+# for i in range(1,N+1):
+# 	if i/3:
+# 		print(i, end=' ')
+# 	elif i%3=0 and i%11==0:
+# 		print('--', end=' ')
+# 	else:
+# 		print('-', end=' ')
+
+
+start = int(input())
+trieagle = int(input())
+
+for i in range(1,trieagle):
+    print(f'{i:>trieagle}')
+	
+
+	
