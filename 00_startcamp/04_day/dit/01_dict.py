@@ -22,7 +22,7 @@ idol = {
 #print(idol['exo'])   #에러남
 # print(idol['bts']['RM']) #딕셔너리 출력-1
 
-#print(idol.get('exo')) #None값을 준다.
+# print(idol.get('exo')) #None값을 준다.
 #print(idol.get('bts').get('RM')) #딕셔너리 출력-2s
 
 def my_dict(**kwargs): 
