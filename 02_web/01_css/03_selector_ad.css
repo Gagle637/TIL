@@ -1,0 +1,41 @@
+/* 그룹 선택자 */
+p,
+h3{
+  color: gray
+}
+
+/* 인접선택자 */
+div{
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+}
+
+
+.red{
+  background-color: red;
+}
+
+.blue{
+  background-color: blue;
+}
+
+/* 인접선택자, 바로 붙어있는 것 */
+
+.red + .blue + div{
+  background-color: purple;
+}
+
+/* 자식 서택자 tab 한칸차이 나는것 */
+ol > li {
+  color: darkgreen;
+}
+
+ol#chocolate > li{
+  color: chocolate;
+}
+
+/* 자손(후손) 선택자 */
+ul li{
+  color: lime
+}
