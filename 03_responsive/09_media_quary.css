@@ -1,0 +1,106 @@
+@media notonly mediatype and (조건문){
+  실행문
+}
+
+/* 우리는 이렇게만 상ㅇ할 것이다. */
+@media (조건문){
+  실행문
+}
+
+@media only all and (max-width: 1200px){
+  *{
+    margin: 0;
+  }
+}
+
+/* only | not : 특정 미디어 타입에서만, 또는 특정 미디어 타입을 제외하고 스타일적용 
+  (only screen/ only print/ not print)
+  all : 모든 미디어 타입(기본값)
+  (screen/ print/ tty/ tv....)
+
+  논리 연산자를 사용하여 조건을 설정할 수 있다.
+  (not / and/ ,(or))
+  
+*/
+
+@media (min-width:600px) {
+  h1{
+    color: crimson;
+  }
+}
+
+
+/* 가로 */
+@media (orientation: landscape){
+  .orientation::after{
+    content: '가로입니다';
+  }
+}
+
+@media (orientation: portrait){
+  .orientation::after{
+    content: '세로입니다';
+  }
+}
+
+/* 뷰포트 너비가 500px이하 (최대너비 500px) */
+@media (max-width:500px){
+  h2{
+    color:darkgreen
+  }
+}
+
+/* 뷰포트 너비가 딱 500px일때 */
+@media (width:100px){
+  h1{
+    color: royalblue;
+  }
+}
+
+@media(min-width:150px){
+  .rainnow{
+    color: red;
+  }
+}
+@media(min-width:200px){
+  .rainnow{
+    color: orange;
+  }
+}
+@media(min-width:250px){
+  .rainnow{
+    color: yellow;
+  }
+}
+@media(min-width:300px){
+  .rainnow{
+    color: green;
+  }
+}
+@media(min-width:350px){
+  .rainnow{
+    color: blue;
+  }
+}
+@media(min-width:400px){
+  .rainnow{
+    color: navy;
+  }
+}
+@media(min-width:450px){
+  .rainnow{
+    color: purple;
+  }
+}
+
+@media (max-height:500px) and (max-width:500px){
+  h3{
+    color: violet;
+  }
+}
+
+@media only print{
+  .print{
+    color: crimson;
+  }
+}
