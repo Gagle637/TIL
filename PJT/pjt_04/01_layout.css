@@ -1,0 +1,27 @@
+
+.bg-box{
+  height: 350px;
+
+
+  background-image: url(./images/header.jpg);
+  background-size: cover;
+  background-position: center;
+  background-size: 100% 350px;
+
+
+}
+
+.heardertext{
+  font-family: 'Nanum Pen Script', cursive;
+  text-align: center;
+  line-height: 350px;
+}
+
+.navbar-font{  
+  font-family: 'Gugi', cursive;
+}
+
+.uptag{
+  position: fixed;
+  right : 3rem;
+}
