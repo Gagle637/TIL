@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'pages/stylesheets/static_example.css' %}">
+{% endblock  %}
+
+
+{% block content %}
+  <h1>Static 파일 실습</h1>
+  <img src={% static "pages/images/ryan.png" %} alt="ryan..">
+{% endblock  %}
+
