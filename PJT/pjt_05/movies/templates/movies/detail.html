@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card mx-auto" style="width: 30rem;">
+  <h2 class= "text-center" style="font-family: 'Nanum Pen Script', cursive;">{{ movie.pk }}번째 글</h2>
+  <img src="{{ movie.poster_url  }}" class="card-img-top" alt="Fail">
+  <div class="card-body" style="font-family: 'Nanum Pen Script', cursive; font-size: 20px;">
+    <h2 class="card-title">Title : {{ movie.title }}</h5>
+    <p class="card-text">Title_En : {{ movie.title_en  }}</p>
+    <hr>
+    <p class="card-text">Audience : {{ movie.audience  }}</p>
+    <p class="card-text">Open_Date : {{ movie.open_dat }}</p>
+    <p class="card-text">Genre : {{ movie.genre }} </p>
+    <p class="card-text">Watch_Grade : {{ movie.watch_grade }}</p>
+    <p class="card-text">Score : {{ movie.score }}</p>
+    <p class="card-text">Description :{{ movie.description }}</p>
+    <p class="card-text">Poster_Url : {{ movie.poster_url  }}</p>
+    <div class="d-flex flex-row-reverse bd-highlight">
+      <a href="/movies/{{ movie.pk }}/delete/" class="btn btn-primary">삭제</a>
+      <a href="/movies/{{ movie.pk }}/edit/" class="btn btn-primary" style="margin-right: 5px;">수정</a>
+      <a href="/movies/" class="btn btn-primary" style="margin-right: 5px;">목록</a>
+    </div>
+  </div>
+</div>
+{% endblock  %}

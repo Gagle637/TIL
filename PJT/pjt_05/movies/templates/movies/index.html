@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex flex-row-reverse bd-highlight">
+  <a href="/movies/new" class="btn btn-primary ml-auto" style="font-family: 'Nanum Pen Script', cursive; font-size: 20px;">새 영화등록</a>
+</div>
+<hr>
+{% for movie in movies %}
+  <a href="/movies/{{ movie.pk }}/" style="font-family: 'Nanum Pen Script', cursive; font-size: 20px;">Title : {{ movie.title }}</a>
+  <p style="font-family: 'Nanum Pen Script', cursive; font-size: 20px;">Score : {{ movie.score }}</p>
+  <hr>
+{% endfor %}
+{% endblock  %}

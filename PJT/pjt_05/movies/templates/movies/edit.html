@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="/movies/{{ movie.pk }}/update/" method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="title">TITLE</label>
+    <input type="text" class="form-control" name="title" id="title" value="{{ movie.title }}" placeholder="Title Movie">
+  </div>
+  <div class="form-group">
+    <label for="title_en">TITLE_EN</label>
+    <input type="text" class="form-control" name="title_en" id="title_en" value="{{ movie.title_en }}"  placeholder="Title_en Movie">
+  </div>
+  <div class="form-group">
+    <label for="audience">AUDIENCE</label>
+    <input type="text" class="form-control" name="audience" id="audience" value="{{ movie.audience }}" placeholder="Audience Movie">
+  </div>
+  <div class="form-group">
+    <label for="open_date">OPEN_DATE</label>
+    <input type="date" class="form-control" name="open_date" id="open_date"  value="{{ movie.open_dat|date:"Y-m-d" }}" placeholder="Open_Date Movie">
+  </div>
+  <div class="form-group">
+    <label for="gerne">GENRE</label>
+    <input type="text" class="form-control" name="gerne" id="gerne" name="gerne"  value="{{ movie.genre }}" placeholder="Gerne Movie">
+  </div>
+  <div class="form-group">
+    <label for="watch_grade">WATCH_GRADE</label>
+    <input type="text" class="form-control" id="watch_grade" name="watch_grade" value="{{ movie.watch_grade }}" placeholder="Watch_Grade Movie">
+  </div>
+  <div class="form-group">
+    <label for="score">SCORE</label>
+    <input type="text" class="form-control" id="score" name="score" value="{{ movie.score }}" placeholder="Score Movie">
+  </div>
+  <div class="form-group">
+    <label for="poster_url">POSTER_URL</label>
+    <input type="text" class="form-control" id="poster_url" name="poster_url" value="{{ movie.poster_url }}" placeholder="Poster_URL Movie">
+  </div>
+  <div class="form-group">
+    <label for="description">DESCRIPTION</label>
+    <textarea class="form-control" id="description" name="description" placeholder="Description Movie" rows="6">{{ movie.description }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">제출</button>
+  <a href="/movies/" class="btn btn-primary">취소</a>
+
+</form>
+{% endblock  %}
