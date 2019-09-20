@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form action="{% url 'jobs:past_life' %}" method='POST'>
+  {% csrf_token %}
+  <label for="name">당신의 전생은?</label>
+  <input type="text" name="name" id="name">
+  <input type="submit" value="제출">
+
+  </form>
+{% endblock  %}

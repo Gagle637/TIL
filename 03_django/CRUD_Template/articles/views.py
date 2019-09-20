@@ -18,8 +18,7 @@ def create(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
-        image = request.FILES.get('image')
-        article = Article(title=title, content=content, image=image)
+        article = Article(title=title, content=content)
         article.save()
         return redirect(article) #메인 페이지
     #NEW
@@ -46,7 +45,6 @@ def update(request, article_pk):
     if request.method == 'POST':
         article.title = request.POST.get('title')
         article.content = request.POST.get('content')
-        article.image = request.FILES.get('image')
         article.save()
         return redirect(article)
     else:
