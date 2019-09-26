@@ -62,7 +62,20 @@ class ArticleForm(forms.ModelForm):
         # }
     
 class CommentForm(forms.ModelForm):
+    content = forms.CharField(
+        label='내용',
+        widget=forms.Textarea(
+            attrs={
+                'class':'my-content',
+                'placeholder':'Enter the Content',
+                'rows': 5,
+                'cols': 50,
+            }
+        )
+    )
     class Meta:
         model = Comment
-        fields = '__all__'
+        # fields = '__all__'
+        fields = ('content',)
+        # exclude = ('article',)
     
