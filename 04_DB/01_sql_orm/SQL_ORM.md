@@ -55,6 +55,9 @@ TIL
 
     ```bash
     $ python manage.py sqlmigrate users 0001
+    
+    $ python manage.py shell_pl
+    #쉘플러스 사용(필요에 따라 ipython 설치)
     ```
 
 * `db.sqlite3` 활용
@@ -133,6 +136,8 @@ TIL
    ----- 정상작동
    user = User(101, '길동', '홍', 45, '충청남도','012-3456-7989', 4500)
    user.save()
+   
+   User.objects.create(first_name='길동', last_name='홍', age=100, country='제주도', phone='010-1233-7989',balance=450000)
    ```
 
    ```sql
@@ -190,6 +195,8 @@ TIL
    # orm
    user=User.objects.get(id=101)
 user.delete()
+   ------
+   User.objects.get(id=101).delete()
    ```
    
    ```sql
@@ -212,6 +219,8 @@ user.delete()
    ```python
    # orm
    len(User.objects.all())
+   # or (len은 ORM 공식문서상 지양하라고 쓰여있다.)
+   User.objects.all().count()
    ```
 
    ```sql
@@ -226,7 +235,13 @@ user.delete()
 
    ```python
    # orm
-   User.objects.filter(age=30).values('first_name')
+   In [40]: User.objects.filter(age=30).values('first_name')
+   Out[40]: <QuerySet [{'first_name': '영환'}, {'first_name': '보람'}, {'first_name': '은영'}]>
+   
+       
+   #쿼리문
+   In [41]: print(User.objects.filter(age=30).values('first_name').query)
+   SELECT "users_user"."first_name" FROM "users_user" WHERE "users_user"."age" = 30
    ```
 
       ```sql
@@ -242,6 +257,8 @@ user.delete()
    # orm
    In [63]: len(User.objects.filter(age__gte=30))
    Out[63]: 43
+       
+   User.objects.filter(age__gte=30).count()
    ```
 
       ```sql
@@ -257,6 +274,8 @@ user.delete()
    # orm
    In [67]: len(User.objects.filter(age__lte=20))
    Out[67]: 23
+       
+   User.objects.filter(age__lte=20).count()
    ```
 
    ```sql
@@ -272,6 +291,8 @@ user.delete()
    # orm
    In [72]: len(User.objects.filter(age=30, last_name='김'))
    Out[72]: 1
+       
+   User.objects.filter(age=30, last_name='김').count()
    ```
 
       ```sql
@@ -285,8 +306,11 @@ user.delete()
 
    ```python
    # orm
-   In [79]: len(User.objects.filter(age=30)) + len(User.objects.filter(last_name='김')) - len(User.objects.filter(age=30, last_name='김'))
-   Out[79]: 25
+   In [39]: len(User.objects.filter(age=30)|User.objects.filter(last_name='김'))
+   Out[39]: 25
+   
+   In [49]: User.objects.filter(Q(age=30)|Q(last_name='김')).count()
+   Out[49]: 25
    ```
 
    ```sql
@@ -304,6 +328,8 @@ user.delete()
    # orm
    In [80]: len(User.objects.filter(phone__startswith='02-'))
    Out[80]: 24
+       
+   User.objects.filter(phone__startswith='02-').count()
    ```
 
       ```sql
@@ -317,8 +343,8 @@ user.delete()
 
    ```python
    # orm
-   In [81]: len(User.objects.filter(last_name='황', country='강원도'))
-Out[81]: 1
+   In [51]: User.objects.filter(last_name='황', country='강원도').values('first_name').first().get(first_name)
+Out[51]: <QuerySet [{'first_name': '은정'}]>
    ```
    
       ```sql
@@ -340,7 +366,7 @@ Out[81]: 1
 
    ```python
    # orm
-   User.objects.order_by('id')[:10].values()
+   User.objects.order_by('-age')[:10].values()
    ```
 
       ```sql
@@ -365,7 +391,7 @@ Out[81]: 1
       ```python
    # orm
    User.objects.order_by('balance', '-age')[:10].values()
-```
+   ```
    
    ```sql
    -- sql
@@ -377,7 +403,7 @@ Out[81]: 1
    ```python
    # orm
    In [133]: User.objects.order_by('-last_name', '-first_name').values()[4]
-Out[133]: 
+   Out[133]: 
    {'id': 67,
     'first_name': '보람',
     'last_name': '허',
@@ -386,7 +412,7 @@ Out[133]:
     'phone': '016-4392-9432',
     'balance': 82000}
    ```
-   
+
       ```sql
    -- sql
    sqlite> SELECT *FROM users_user ORDER BY last_name DESC, first_name DESC LIMIT 1 OFFSET 4;
@@ -411,50 +437,70 @@ Out[133]:
 
 1. 전체 평균 나이
 
-      ```python
+   ```python
    # orm
+   In [62]: User.objects.aggregate(Avg('age'))
+   Out[62]: {'age__avg': 29.637254901960784}
    ```
 
       ```sql
    -- sql
+   sqlite> SELECT AVG(age) FROM users_user;
+   29.6372549019608
       ```
 
 2. 김씨의 평균 나이
 
-      ```python
+   ```python
    # orm
+   In [64]: User.objects.filter(last_name='김').aggregate(Avg('age'))
+   Out[64]: {'age__avg': 28.782608695652176}
    ```
 
       ```sql
    -- sql
+   sqlite> SELECT AVG(age) FROM users_user WHERE last_name='김';
+   28.7826086956522
       ```
 
 3. 강원도에 사는 사람의 평균 계좌 잔고
 
    ```python
    # orm
+   In [66]: User.objects.filter(country='강원도').aggregate(Avg('balance'))
+   Out[66]: {'balance__avg': 157895.0}
    ```
 
    ```sql
    -- sql
+   sqlite> SELECT AVG(balance) FROM users_user WHERE country='강원도';
+   157895.0
    ```
 
 4. 계좌 잔액 중 가장 높은 값
 
    ```python
    # orm
+   In [67]:  User.objects.aggregate(Max('balance'))
+   Out[67]: {'balance__max': 1000000}
    ```
 
       ```sql
    -- sql
+   sqlite> SELECT MAX(balance) FROM users_user;
+   1000000
       ```
 
 5. 계좌 잔액 총액
 
    ```python
    # orm
+   In [68]:  User.objects.aggregate(Sum('balance'))
+Out[68]: {'balance__sum': 15325040}
    ```
-
+   
       ```sql
    -- sql
+   sqlite> SELECT SUM(balance) FROM users_user;
+   15325040
       ```
