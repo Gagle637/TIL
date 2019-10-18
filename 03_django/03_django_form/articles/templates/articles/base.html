@@ -1,5 +1,4 @@
 {% load bootstrap4 %}
-
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -9,9 +8,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   {% bootstrap_css %}
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap&subset=korean" rel="stylesheet">
 </head>
 
 <body>
+  {% block header %}
+
+  {% endblock  %}
   <div class="container">
     {% block content %}
     {% endblock  %}
