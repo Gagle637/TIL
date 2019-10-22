@@ -1,4 +1,5 @@
 {% load bootstrap4 %}
+{% load gravatar %}
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -7,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <script src="https://kit.fontawesome.com/d00b3497dc.js" crossorigin="anonymous"></script>
   {% bootstrap_css %}
   <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script&display=swap&subset=korean" rel="stylesheet">
 </head>
@@ -17,6 +19,7 @@
     
     {% if user.is_authenticated %}
       <h3>
+        <img src="https://s.gravatar.com/avatar/{{ user.email|makemd5 }}?s=80" alt="프로필">
         Hello, {{ user.username }}
         <a href="{% url 'articles:index' %}">홈</a>
         <a href="{% url 'accounts:update' %}">정보수정</a>
