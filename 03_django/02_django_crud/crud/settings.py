@@ -126,12 +126,14 @@ USE_TZ = True
 
 #실제 파일이나 디렉토리가 아니고, URL로만 존재하는 단위.
 STATIC_URL = '/static/'
-
+# app/static/ 의 경로로 작동한다.
 #개발 단계에서 사용하는 실제 정적 파일이 위치한 경로를 저장하는 설정.
 #보통 boot strap, 외부 템플릿 등을 저장하기 위해 사용함.
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'crud', 'assets'),
 ]
+# static을 로드할 때 project의 assets의 폴더에서 경로를 지정한다.
 
 #STATIC_URL 와 비슷한 역할을 한다.
 # 업로드 된 파일의 URL 주소를 만들어주는 역할.

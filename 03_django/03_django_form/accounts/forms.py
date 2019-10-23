@@ -8,4 +8,5 @@ class CustomUserChangeForm(UserChangeForm):
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
+        model = get_user_model() #account.User
         fields = UserCreationForm.Meta.fields + ('email', )

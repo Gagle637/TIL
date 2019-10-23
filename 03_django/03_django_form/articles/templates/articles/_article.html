@@ -1,6 +1,6 @@
 <div class="card mb-3">
   <div class="card-header">
-    작성자 : {{ article.user }}
+    작성자 : <a class="card-link" href="{% url 'accounts:profile' article.user %}">{{ article.user }}</a>
   </div>
   <div class="card-body">
     <h5 class="card-title"> No.{{ article.pk }} {{ article.title }}</h5>
@@ -14,10 +14,6 @@
       {% endif %}
       </a>
       {{ article.like_users.all.count }}명이 이 글을 좋아합니다.   
-      <!--
-      <p>{{ article.like_users.all.count }}명이 이 글을 좋아합니다.</p> 
-      <p>{{ article.like_users.all|length }}명이 이 글을 좋아합니다.</p>
-      -->
     </p>
     <a href="{{ article.get_absolute_url }}" class="btn btn-primary">DETAIL</a>  
   </div>
