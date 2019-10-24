@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404, HttpResponse
 from django.forms import ModelChoiceField
 from django.views.decorators.http import require_POST
-from .models import Article, Comment
+from .models import Article, Comment, Hashtag
 from .forms import ArticleForm, CommentForm
 
 
@@ -43,6 +43,13 @@ def create(request):
             article = form.save(commit=False)
             article.user = request.user
             article.save()
+            for word in article.content.split(): #content를 공백기준으로 리스트로 변경
+                if word.startswith('#'): # '#'으로 시작하는 요소만 선택
+                    hashtag, created = Hashtag.objects.get_or_create(content=word) # word랑 같은 해시태그를 찾는데 있으면 기존 객체(.get), 없으면 새로운 객체를 생성(.create)
+                    article.hashtags.add(hashtag) 
+                    # article.hashtags.add(hashtag) #created를 사용하지 않았다면, hashtag[0]로 작성
+            #hashtag는 db에 저장된 이후로 만들어져야한다. 즉 save이후로 작성
+
             return redirect(article)
     else:
         form = ArticleForm()
@@ -79,6 +86,11 @@ def update(request, article_pk):
             form = ArticleForm(request.POST, instance=article)
             if form.is_valid():            
                 article = form.save()
+                article.hashtags.clear() #해당 article의 hashtag전체 삭제
+                for word in article.content.split(): 
+                    if word.startswith('#'): 
+                        hashtag, created = Hashtag.objects.get_or_create(content=word) 
+                        article.hashtags.add(hashtag)
                 return redirect(article)
         else:
             # ArticleForm 을 초기화(이전에 DB에 저장된 데이터를 넣어준 상태)
@@ -146,3 +158,9 @@ def follow(request, article_pk, user_pk):
         else:
             person.followers.add(user)
     return redirect('articles:detail', article_pk)
+
+def hashtag(request, hash_pk):
+    hashtag = get_object_or_404(Hashtag, pk=hash_pk)
+    articles = hashtag.article_set.order_by('-pk')
+    context = {'hashtag':hashtag, 'articles':articles,}
+    return render(request, 'articles/hashtag.html', context)
