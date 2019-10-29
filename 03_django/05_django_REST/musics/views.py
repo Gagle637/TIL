@@ -3,7 +3,7 @@ from .models import Music, Artist, Comment
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .serializers import MusicSerializer, ArtistSerializer, ArtistDetailSerializer, CommentSerializer, MusicDetailSerializer
-re
+
 # Create your views here.
 @api_view()
 def music_list(request):
