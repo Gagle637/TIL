@@ -12,7 +12,7 @@ console.log(a,b,c,d,e,f,g)
 const sentence1 = 'sentence'
 const sentence2 = "sentence"
 const sentence3 = `sentence`
-// const sentence3 = `sentence`
+const sentence4 = `sentence`
 
 // backtick `
 // const word = "안녕 
