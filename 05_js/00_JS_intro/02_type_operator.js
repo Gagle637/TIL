@@ -6,7 +6,7 @@ const e = Infinity
 const f = -Infinity
 const g = NaN
 
-console.log(a,b,c,d,e,f,g)
+console.log(a, b, c, d, e, f, g)
 
 // 문자열
 const sentence1 = 'sentence'

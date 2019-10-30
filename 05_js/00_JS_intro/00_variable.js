@@ -26,7 +26,7 @@ if (MY_FAV === 7) {
   // 블록 유효 범위로 지정된 MY_FAV 이라는 변수를 만드므로 괜찮다.
   // 즉, 전역이 아닌 범위안이므로 이를 공간에서 출동이 나지 않는다.
   const MY_FAV = 20
-  console.log('my favourite number is '+ MY_FAV)
+  console.log('my favourite number is ' + MY_FAV)
 }
 
 console.log(MY_FAV)
@@ -47,7 +47,7 @@ function letTest() {
   let x = 1
   if (true) {
     let x = 2
-    console.log(x)  // 2, 상위 블록과 다른 변수
+    console.log(x) // 2, 상위 블록과 다른 변수
   }
   console.log(x) // 1
 }
@@ -87,7 +87,7 @@ function getPropertyName() {
 let isAvilable = false
 
 // 2. 파스칼 케이스(PascalCase) - 클래스, 생성자 (=== upper-camel-case)
-class User{
+class User {
   constructor(options) {
     this.name = option.name
   }
@@ -96,4 +96,3 @@ class User{
 // 3. 대문자 스네이크 메이스(SNAKE_CASE) - 상수
 // 이 표현은 변수와 변수의 속성이 변하지 않는다는 것을 프로그래머에게 알려준다.
 const API_KEY = 'aasdasdacvsvsadv3r1qwqwr2#!@#!2r2'
-
