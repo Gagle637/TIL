@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <select V-model="N">
+      <option v-for="n in 10">{{ n }}</option>
+    </select>
+    <button @click="dogImage">Get {{ N }} Dogs!</button>
+    <img v-for="image in images" :src="image">
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    const app = new Vue({
+      el: '#app',
+      data: {
+        N: 1,
+        images: [],
+      },
+      methods: {
+        dogImage: function () {
+          const N = this.N
+          const url = `https://dog.ceo/api/breeds/image/random/${N}`
+          axios.get(url)
+            .then(response => {
+              this.images = this.images.concat(response.data.message)
+              console.log(this.images)
+            })
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>
