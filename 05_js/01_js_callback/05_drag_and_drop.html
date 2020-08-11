@@ -28,9 +28,9 @@
     function drag(e) {
       var parentNode = e.target.parentElement
       var left = e.clientX - mx
-      var top = e.clientY -my
-      if (left < 0) left = 5
-      if (top < 0) top = 5
+      var top = e.clientY - my
+      if (left < 0) left = 0
+      if (top < 0) top = 0
       parentNode.style.left = left + "px"
       parentNode.style.top = top + "px"
     }
