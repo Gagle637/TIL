@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./05_drag_and_drop.css">
+</head>
+<body>
+  <div class="drag_target">
+    <div class="drag_inner" draggable="true" ondragstart="dragStart(event)" ondrag="drag(event)" ondragover="dragOver(event)">
+      Drag Here! ! !
+    </div>
+  </div>
+
+  <script>
+    var mx, my
+
+    function dragStart(e) {
+      var parentNode = e.target.parentElement
+      var img = document.createElement('img'); 
+      img.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+      e.dataTransfer.setDragImage(img,0,0);    
+      mx = e.clientX-parentNode.offsetLeft
+      my = e.clientY-parentNode.offsetTop
+    }
+
+    function drag(e) {
+      var parentNode = e.target.parentElement
+      var left = e.clientX - mx
+      var top = e.clientY -my
+      if (left < 0) left = 5
+      if (top < 0) top = 5
+      parentNode.style.left = left + "px"
+      parentNode.style.top = top + "px"
+    }
+
+    function dragOver(e) {
+      e.preventDefault()
+    }
+  </script>
+  
+</body>
+</html>
