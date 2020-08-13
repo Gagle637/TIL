@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    .drag-zone-1, .drag-zone-2 {
+    .drag-zone-1,
+    .drag-zone-2 {
       border: 1px solid black;
       width: 200px;
       height: 500px;
@@ -20,14 +22,16 @@
     }
   </style>
 </head>
+
 <body>
   <h1>Drag and drop</h1>
+
   <div class="drag-zone-1" ondrop="dropHandler(event)" ondragover="onDragHandler(event)">
     <div id="target" class="drag-target" draggable="true" ondragstart="dragStartHandler(event)"></div>
   </div>
 
   <div class="drag-zone-2" ondrop="dropHandler(event)" ondragover="onDragHandler(event)"></div>
-
+  
   <script>
     function dropHandler(e) {
       e.preventDefault()
@@ -44,4 +48,5 @@
     }
   </script>
 </body>
+
 </html>
