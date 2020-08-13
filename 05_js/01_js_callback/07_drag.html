@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .drag-zone-1, .drag-zone-2 {
+      border: 1px solid black;
+      width: 200px;
+      height: 500px;
+      display: inline-block;
+    }
+
+    .drag-target {
+      width: 180px;
+      height: 100px;
+      background-color: gray;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Drag and drop</h1>
+  <div class="drag-zone-1" ondrop="dropHandler(event)" ondragover="onDragHandler(event)">
+    <div id="target" class="drag-target" draggable="true" ondragstart="dragStartHandler(event)"></div>
+  </div>
+
+  <div class="drag-zone-2" ondrop="dropHandler(event)" ondragover="onDragHandler(event)"></div>
+
+  <script>
+    function dropHandler(e) {
+      e.preventDefault()
+      var data = e.dataTransfer.getData("text")
+      e.target.appendChild(document.getElementById(data))
+    }
+
+    function onDragHandler(e) {
+      e.preventDefault()
+    }
+
+    function dragStartHandler(e) {
+      e.dataTransfer.setData("text", e.target.id);
+    }
+  </script>
+</body>
+</html>
