@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./00_parallax.css">
+</head>
+<body>
+  <div class="zoom">
+    <img id="layer1" src="./image/mountain1.png" alt="">
+    <img id="layer2" src="./image/mountain2.png" alt="">
+    <img id="text" src="./image/text.png" alt="">
+  </div>
+
+  <script>
+    var layer1 = document.getElementById('layer1')
+    scroll = window.pageYOffset
+    document.addEventListener('scroll', 
+      function(e) {
+        var offset = window.pageYOffset
+        scroll = offset
+        layer1.style.width = (100 + scroll/5) + '%'
+        layer1.style.height = (100 + scroll/5) + '%'
+      })
+
+    var layer2 = document.getElementById('layer2')
+    scroll = window.pageYOffset
+    document.addEventListener('scroll', 
+      function(e) {
+        var offset = window.pageYOffset
+        scroll = offset
+        layer2.style.width = (100 + scroll/5) + '%'
+        layer2.style.height = (100 + scroll/5) + '%'
+        layer2.style.left = scroll/50 + '%'
+      })
+
+    var text = document.getElementById('text')
+    scroll = window.pageYOffset
+    document.addEventListener('scroll', 
+      function(e) {
+        var offset = window.pageYOffset
+        scroll = offset
+        text.style.top = -scroll/10 + '%  '
+      })
+  </script>
+</body>
+</html>
