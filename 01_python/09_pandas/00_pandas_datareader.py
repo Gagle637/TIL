@@ -16,4 +16,5 @@ plt.figure(figsize=(15, 5))
 plt.plot(gs['Close'])
 plt.show()
 
+# print(gs.to_json(None, orient="records"))
 # gs['Close'].plot(figsize=(15, 5))
